@@ -1,14 +1,27 @@
 # Library Core
 
-API RestFull creada con NodeJS, Express y Sequelize.
+This is the core of a virtual library, created with NodeJS.
 
-**Use PostgreSQL a DataBase**
+## Technologies
+
+1. NodeJS
+2. ExpressJS
+3. Sequelize
+4. PostgreSQL
 
 ## Steps
 
-1. Clone este repo
-2. Muevase ``` cd library-core ```
-3. Asegurese de tener PostgreSQL corriendo en su maquina.
-4. Ejecute ``` npm i && npm run watch ```
-5. En su navegador entrar a ``` localhost:2302 ```
-6. Deberia estar viendo Library Docs
+1. Clone
+2. Move to ``` cd library-core ```
+3. Make sure you have PostgreSQL running on your machine.
+4. Run ``` npm i && npm run watch ```
+5. Your API is ready ``` localhost:2302/books ```
+
+## NOTE
+
+
+If he came this far it is because we are ready.
+
+You can consult the Documentation at this URL:
+
+[Library Docs](https://documenter.getpostman.com/view/7831505/SVSNKnRq?version=latest#intro)

@@ -1,10 +1,14 @@
 import { Router } from 'express'
-import { create, get } from '../controllers/book'
+import { create, get, list } from '../controllers/book'
 const api = Router()
 
 // @Desc    Create book
 // @Access  Private.
 api.post('/', create)
+
+// @Desc     Get all books
+// @Access   Public
+api.get('/', list)
 
 // @Desc    Get book by ID
 // @Access  Public

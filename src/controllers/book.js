@@ -28,7 +28,23 @@ const get = async (req, res) => {
   }
 }
 
+const list = async (req, res) => {
+  try {
+    const perPage = parseInt(req.query.limit) || 5
+    const page = parseInt(req.query.page) || 1
+    const books = await Book.findAndCountAll({
+      offset: ((perPage * page) - perPage),
+      limit: perPage
+    })
+    const pages = Math.ceil(books.count / perPage)
+    res.status(200).send({ books: books.rows, allBooks: books.count, pages })
+  } catch (e) {
+    res.status(500).send({ error: e.message })
+  }
+}
+
 export {
   create,
-  get
+  get,
+  list
 }
