@@ -31,6 +31,10 @@ const Page = sequelize.define('pages', {
   content: {
     type: Sequelize.TEXT,
     allowNull: false
+  },
+  bookId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 })
 

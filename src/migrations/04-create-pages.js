@@ -32,6 +32,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
+      bookId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
