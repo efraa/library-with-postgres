@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { create, get, list, remove } from '../controllers/book'
+import { create, get, list, remove, update } from '../controllers/book'
 const api = Router()
 
 // @Desc    Create book
@@ -16,6 +16,10 @@ api.get('/:id', get)
 
 // @Desc     DELETE book by ID
 // @Access   Private
-api.delete('/:id', remove);
+api.delete('/:id', remove)
+
+// @Desc     Update book by ID
+// @Access   Private
+api.put('/:id', update)
 
 export default api
