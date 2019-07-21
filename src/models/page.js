@@ -4,31 +4,33 @@ import sequelize from '../lib/db'
 const Page = sequelize.define('pages', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
-  },
-  book: {
-    type: Sequelize.STRING,
-    allowNull: false
+    primaryKey: true,
+    autoIncrement: true
   },
   nextPage: {
-    type: Sequelize.NUMBER,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      isNumeric: true
+    }
   },
   prevPage: {
-    type: Sequelize.NUMBER,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      isNumeric: true
+    }
   },
   page: {
-    type: Sequelize.NUMBER,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      isNumeric: true
+    }
   },
   content: {
     type: Sequelize.TEXT,
     allowNull: false
-  },
-  registered: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW
   }
 })
 

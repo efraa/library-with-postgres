@@ -10,10 +10,7 @@ const Book = sequelize.define('books', {
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      is: ["^[a-z]+$",'i']
-    }
+    allowNull: false
   },
   isbn: {
     type: Sequelize.STRING,
@@ -29,7 +26,7 @@ const Book = sequelize.define('books', {
     type: Sequelize.DATE
   },
   paperback: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
     defaultValue: 0,
     validate: {
       isNumeric: true
@@ -37,14 +34,10 @@ const Book = sequelize.define('books', {
   },
   language: {
     type: Sequelize.STRING
-  },
-  code: {
-    type: Sequelize.STRING,
-    allowNull: false
   }
 })
 
-Book.hasMany(Page, { foreingKey: 'book', sourceKey: 'id' })
-// Page.belongsTo(Book, { foreingKey: 'book', sourceKey: 'id' })
+Book.hasMany(Page)
+Page.belongsTo(Book)
 
 export default Book
