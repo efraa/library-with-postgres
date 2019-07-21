@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -12,10 +12,10 @@ module.exports = {
       language: 'English',
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    }], {})
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('books', null, {});
+    return queryInterface.bulkDelete('books', null, {})
   }
-};
+}
