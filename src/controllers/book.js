@@ -43,8 +43,25 @@ const list = async (req, res) => {
   }
 }
 
+const remove = async (req, res) => {
+  try {
+    const { id } = req.params
+    const book = await Book.destroy({
+      where: {
+        id
+      }
+    })
+
+    if (!book) return res.status(404).send({ msg: 'Book not found' })
+    return res.status(200).send({ msg: 'the book has been removed' })
+  } catch (e) {
+    res.status(500).send({ error: e.message })
+  }
+}
+
 export {
   create,
   get,
-  list
+  list,
+  remove
 }
