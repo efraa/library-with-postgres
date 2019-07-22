@@ -96,9 +96,27 @@ const remove = async (req, res) => {
   }
 }
 
+const update = async (req, res) => {
+  try {
+    const { book, page } = req.params
+    const findBook = await Book.findByPk(book)
+    if (!findBook) return res.status(404).send({ msg: 'Book not found' })
+    const findPage = await Page.findByPk(page)
+    if (!findPage) return res.status(404).send({ msg: 'Page not found' })
+    const update = req.body
+
+    const pageUpdate = await findPage.update(update)
+    if (!pageUpdate) res.status(404).send({ msg: 'The page has not been updated' })
+    res.status(200).send({ page: pageUpdate })
+  } catch (e) {
+    res.status(500).send({ error: e.message })
+  }
+}
+
 export {
   create,
   get,
   list,
-  remove
+  remove,
+  update
 }
