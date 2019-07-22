@@ -1,5 +1,5 @@
 import sanitizeHtml from 'sanitize-html'
-// import htmlToText from 'html-to-text'
+import htmlToText from 'html-to-text'
 import Page from '../models/page'
 import Book from '../models/book'
 
@@ -31,6 +31,55 @@ const create = async (req, res) => {
   }
 }
 
+const get = async (req, res) => {
+  try {
+    const { book, page } = req.params
+    const { format } = req.query
+    const findBook = await Book.findByPk(book)
+    if (!findBook) return res.status(404).send({ msg: 'Book not found' })
+    const findPage = await Page.findByPk(page)
+    if (!findPage) return res.status(404).send({ msg: 'Page not found' })
+
+    if (format === 'text') {
+      findPage.set('content', htmlToText.fromString(findPage.get('content')))
+    }
+    res.status(200).send({ page: findPage })
+  } catch (e) {
+    res.status(500).send({ error: e.message })
+  }
+}
+
+const list = async (req, res) => {
+  try {
+    const { book } = req.params
+    const { format } = req.query
+    const findBook = await Book.findByPk(book)
+    if (!findBook) return res.status(404).send({ msg: 'Book not found' })
+
+    const perPage = parseInt(req.query.limit) || 5
+    const page = parseInt(req.query.page) || 1
+
+    const findPages = await Page.findAndCountAll({
+      where: {
+        bookId: book
+      },
+      offset: ((perPage * page) - perPage),
+      limit: perPage
+    })
+
+    if (format === 'text') {
+      findPages.rows.forEach(page => page.set('content', htmlToText.fromString(page.get('content'))))
+    }
+    const allPages = Math.ceil(findPages.count / perPage)
+    res.status(200).send({ pages: findPages.rows, allPages });
+
+  } catch (e) {
+    res.status(500).send({ error: e.message });
+  }
+}
+
 export {
-  create
+  create,
+  get,
+  list
 }
