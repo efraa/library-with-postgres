@@ -77,8 +77,28 @@ const list = async (req, res) => {
   }
 }
 
+const remove = async (req, res) => {
+  try {
+    const { book, page } = req.params
+    const findBook = await Book.findByPk(book)
+    if (!findBook) return res.status(404).send({ msg: 'Book not found' })
+    const findPage = await Page.findByPk(page)
+    if (!findPage) return res.status(404).send({ msg: 'Page not found' })
+
+    const deleted = await Page.destroy({
+      where: {
+        id: page
+      }
+    })
+    if (deleted) return res.status(200).send({ msg: 'the page has been removed' })
+  } catch (e) {
+    res.status(500).send({ error: e.message })
+  }
+}
+
 export {
   create,
   get,
-  list
+  list,
+  remove
 }
