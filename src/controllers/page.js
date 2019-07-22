@@ -71,10 +71,9 @@ const list = async (req, res) => {
       findPages.rows.forEach(page => page.set('content', htmlToText.fromString(page.get('content'))))
     }
     const allPages = Math.ceil(findPages.count / perPage)
-    res.status(200).send({ pages: findPages.rows, allPages });
-
+    res.status(200).send({ pages: findPages.rows, allPages })
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ error: e.message })
   }
 }
 

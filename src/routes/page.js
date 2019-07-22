@@ -8,7 +8,7 @@ api.post('/:book/pages', create)
 
 // @Desc     Get all pages from book
 // @Access   Public
-api.get('/:book/pages', list);
+api.get('/:book/pages', list)
 
 // @Desc    Get Page by ID
 // @Access  Public

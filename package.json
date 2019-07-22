@@ -1,7 +1,7 @@
 {
   "name": "library",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the core of a virtual library, created with NodeJS.",
   "main": "index.js",
   "scripts": {
     "build": "babel src -d dist --source-maps",
@@ -27,10 +27,10 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "morgan": "^1.9.1",
+    "html-to-text": "^5.1.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.10.1",
-    "sequelize-auto-migrations": "^1.0.3"
+    "sanitize-html": "^1.20.1",
+    "sequelize": "^5.10.1"
   }
 }
