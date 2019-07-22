@@ -72,7 +72,7 @@ const update = async (req, res) => {
     if (!findBook) res.status(404).send({ msg: 'Book not found' })
     const book = await findBook.update(update)
 
-    if (!book) res.status(404).send({ msg: 'The book has not been updated' })
+    if (!book) res.status(500).send({ msg: 'The book has not been updated' })
     res.status(200).send({ book })
   } catch (e) {
     res.status(500).send({ error: e.message })
